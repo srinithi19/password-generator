@@ -32,12 +32,12 @@ function generatePassword() {
     passwordLength = window.prompt("Please choose a password length between 8 and 128 characters.");
   }
 
-  while (!ucLetter && !lcLetter && !numeric && !special) {
-    ucLetter = confirm("Click OK to include lower case letters in your password");
-    lcLetter = confirm("Click OK to include upper case letters in your password");
+  while (ucLetter==false && lcLetter==false && number==false && specialChar==false) {
+    lcLetter = confirm("Click OK to include lower case letters in your password");
+    ucLetter = confirm("Click OK to include upper case letters in your password");
     number = confirm("Click OK to include numbers in your password");
     specialChar = confirm("Click OK to include special characters in your password");
-    if(!ucLetter && !lcLetter && !numeric && !special){
+    if(ucLetter==false && lcLetter==false && number==false && specialChar==false){
       window.alert("Please choose atleast one criteria");
     }
   }
@@ -46,16 +46,31 @@ function generatePassword() {
   let passwordList = [];
 
   if (lcLetter) {
-    passwordList.concat(lowerCaseLetters);
+    //passwordList.concat(lowerCaseLetters);
+    for(let i = 0 ; i < lowerCaseLetters.length ; i++)
+    {
+      passwordList.push(lowerCaseLetters[i]);
+    }
+    
+    //console.log(passwordList)
   }
   if (ucLetter) {
-    passwordList.concat(upperCaseLetters);
+    for(let i = 0 ; i < upperCaseLetters.length ; i++)
+    {
+      passwordList.push(upperCaseLetters[i]);
+    }  
   }
   if (specialChar) {
-    passwordList.concat(specialChars);
+    for(let i = 0 ; i < specialChars.length ; i++)
+    {
+      passwordList.push(specialChars[i]);
+    }  
   }
   if (number) {
-    passwordList.concat(nums);
+    for(let i = 0 ; i < nums.length ; i++)
+    {
+      passwordList.push(nums[i]);
+    }  
   }
 
 // generate random password and return it
